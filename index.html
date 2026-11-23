@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101a2b">
+  <meta name="description" content="Explora el Bosque Despierto en esta aventura de plataformas neo-pixel para uno o dos jugadores.">
+  <title>Mundos en Caos — El Bosque Despierto</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Mundos en Caos, inicio"><span class="brand-mark">✦</span><span>MUNDOS <b>EN CAOS</b><small>EL BOSQUE DESPIERTO</small></span></a>
+      <div class="top-actions"><span class="chip"><i></i> AVENTURA</span><button id="soundBtn" class="icon-btn" type="button" aria-label="Alternar sonido" title="Sonido">♫</button><button id="pauseBtn" class="icon-btn" type="button" aria-label="Pausar" title="Pausar">Ⅱ</button></div>
+    </header>
+    <section class="game-frame" aria-label="Videojuego Mundos en Caos">
+      <div class="hud">
+        <div class="hud-player" id="playerOneHud"><span class="avatar avatar-one">✦</span><div><strong>AVENTURERO 1</strong><div class="hearts" id="hearts1" aria-label="Vidas jugador 1">♥ ♥ ♥</div></div></div>
+        <div class="hud-center"><span class="level-label" id="levelName">MUNDO 01 · BOSQUE DESPIERTO</span><div class="progress-track"><span id="progressBar"></span></div><small id="collectLabel">LUCES 0 / 8</small></div>
+        <div class="hud-right"><div class="score"><small>FRAGMENTOS</small><strong id="scoreLabel">0000</strong></div><div class="hud-player second-hud hidden" id="playerTwoHud"><span class="avatar avatar-two">◆</span><div><strong>AVENTURERO 2</strong><div class="hearts" id="hearts2">♥ ♥ ♥</div></div></div></div>
+      </div>
+      <canvas id="game" width="960" height="540" aria-label="Juego de plataformas. Usa A y D para moverte, espacio para saltar y F para atacar."></canvas>
+      <div class="screen" id="screen" role="dialog" aria-modal="true" aria-labelledby="screenTitle">
+        <div class="screen-card">
+          <div class="eyebrow" id="screenEyebrow">UNA AVENTURA COOPERATIVA</div>
+          <h1 id="screenTitle">EL BOSQUE<br><span>DESPIERTO</span></h1>
+          <p id="screenText">Las luces del bosque se han dispersado. ¡Recógelas, esquiva a los guardianes y encuentra el portal!</p>
+          <div class="mode-picker" id="modePicker"><button type="button" class="mode active" data-mode="1"><span>◎</span><b>UN JUGADOR</b><small>Una aventura a tu ritmo</small></button><button type="button" class="mode" data-mode="2"><span>✦</span><b>COOPERATIVO LOCAL</b><small>Dos jugadores, un equipo</small></button></div>
+          <button class="primary-btn" id="startBtn" type="button">COMENZAR AVENTURA <span>→</span></button>
+          <div class="hint" id="screenHint">WASD / ESPACIO / F / G <span>·</span> FLECHAS / ENTER / L / K PARA JUGADOR 2</div>
+        </div>
+      </div>
+      <div class="toast" id="toast" aria-live="polite"></div>
+      <div class="mobile-controls" id="mobileControls" aria-label="Controles táctiles">
+        <div class="touch-group movement"><button data-key="left" aria-label="Mover a la izquierda">◀</button><button data-key="right" aria-label="Mover a la derecha">▶</button></div>
+        <div class="touch-group actions"><button data-key="attack" aria-label="Atacar">✦</button><button data-key="ability" aria-label="Habilidad">⚡</button><button data-key="jump" aria-label="Saltar" class="jump">▲</button></div>
+      </div>
+      <div class="bottom-tip"><span>✦</span> REÚNE LAS LUCES Y ALCANZA EL PORTAL <span class="tip-right">EL MUNDO CAMBIA CONTIGO</span></div>
+    </section>
+    <footer><span>HECHO PARA EXPLORAR JUNTOS</span><span class="footer-dot">◆</span><span>UNA AVENTURA DE MUNDOS EN CAOS</span></footer>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
