@@ -1,0 +1,13 @@
+{
+  "name": "Mundos en Caos — El Bosque Despierto",
+  "short_name": "Mundos en Caos",
+  "description": "Aventura neo-pixel para uno o dos jugadores.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "landscape-primary",
+  "background_color": "#101a2b",
+  "theme_color": "#101a2b",
+  "icons": [{"src":"assets/pixelarte-logo.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

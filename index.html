@@ -4,11 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#101a2b">
-  <meta name="description" content="Explora el Bosque Despierto en esta aventura de plataformas neo-pixel para uno o dos jugadores.">
+  <meta name="description" content="Mundos en Caos: una aventura neo-pixel para jugar en solitario o cooperativo. También instalable como aplicación.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Mundos en Caos — El Bosque Despierto</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/pixelarte-logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/pixelarte-logo.svg">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div id="splash" class="splash" aria-label="PixelARTE Games"><img src="assets/pixelarte-logo.svg" alt="PixelARTE Games"><span>UNA AVENTURA ORIGINAL</span></div>
   <main class="game-shell">
     <header class="topbar">
       <a class="brand" href="#" aria-label="Mundos en Caos, inicio"><span class="brand-mark">✦</span><span>MUNDOS <b>EN CAOS</b><small>EL BOSQUE DESPIERTO</small></span></a>
@@ -16,29 +22,29 @@
     </header>
     <section class="game-frame" aria-label="Videojuego Mundos en Caos">
       <div class="hud">
-        <div class="hud-player" id="playerOneHud"><span class="avatar avatar-one">✦</span><div><strong>AVENTURERO 1</strong><div class="hearts" id="hearts1" aria-label="Vidas jugador 1">♥ ♥ ♥</div></div></div>
-        <div class="hud-center"><span class="level-label" id="levelName">MUNDO 01 · BOSQUE DESPIERTO</span><div class="progress-track"><span id="progressBar"></span></div><small id="collectLabel">LUCES 0 / 8</small></div>
+        <div class="hud-player"><span class="avatar avatar-one">✦</span><div><strong>AVENTURERO 1</strong><div class="hearts" id="hearts1">♥ ♥ ♥</div></div></div>
+        <div class="hud-center"><span class="level-label" id="levelName">MUNDO 01 · BOSQUE DESPIERTO</span><div class="progress-track"><span id="progressBar"></span></div><small id="collectLabel">LUCES 0 / 10</small></div>
         <div class="hud-right"><div class="score"><small>FRAGMENTOS</small><strong id="scoreLabel">0000</strong></div><div class="hud-player second-hud hidden" id="playerTwoHud"><span class="avatar avatar-two">◆</span><div><strong>AVENTURERO 2</strong><div class="hearts" id="hearts2">♥ ♥ ♥</div></div></div></div>
       </div>
-      <canvas id="game" width="960" height="540" aria-label="Juego de plataformas. Usa A y D para moverte, espacio para saltar y F para atacar."></canvas>
+      <canvas id="game" width="960" height="540" aria-label="Plataformas: jugador uno usa WASD, espacio, F y G. Dos jugadores: jugador dos usa flechas, Enter, L y K."></canvas>
       <div class="screen" id="screen" role="dialog" aria-modal="true" aria-labelledby="screenTitle">
         <div class="screen-card">
-          <div class="eyebrow" id="screenEyebrow">UNA AVENTURA COOPERATIVA</div>
+          <div class="eyebrow" id="screenEyebrow">PIXELARTE GAMES PRESENTA</div>
           <h1 id="screenTitle">EL BOSQUE<br><span>DESPIERTO</span></h1>
-          <p id="screenText">Las luces del bosque se han dispersado. ¡Recógelas, esquiva a los guardianes y encuentra el portal!</p>
+          <p id="screenText">Un mundo mágico está perdiendo su luz. ¿Te atreves a descubrir qué despierta entre los árboles?</p>
           <div class="mode-picker" id="modePicker"><button type="button" class="mode active" data-mode="1"><span>◎</span><b>UN JUGADOR</b><small>Una aventura a tu ritmo</small></button><button type="button" class="mode" data-mode="2"><span>✦</span><b>COOPERATIVO LOCAL</b><small>Dos jugadores, un equipo</small></button></div>
-          <button class="primary-btn" id="startBtn" type="button">COMENZAR AVENTURA <span>→</span></button>
+          <div class="menu-actions" id="menuActions"><button class="primary-btn" id="startBtn" type="button">COMENZAR AVENTURA <span>→</span></button><div class="secondary-actions"><button class="secondary-btn" id="settingsBtn" type="button">⚙ CONFIGURACIÓN</button><button class="secondary-btn" id="creditsBtn" type="button">✦ CRÉDITOS</button><button class="secondary-btn install-btn" id="installBtn" type="button">↓ INSTALAR JUEGO</button></div></div>
+          <section class="settings-panel hidden" id="settingsPanel"><label class="setting-row"><span><b>Música ambiental</b><small>Melodías suaves generadas en el juego</small></span><input id="musicToggle" type="checkbox" checked></label><label class="setting-row"><span><b>Efectos de sonido</b><small>Saltos, energía, luces y combate</small></span><input id="fxToggle" type="checkbox" checked></label><label class="range-row">Volumen de música <input id="musicVolume" type="range" min="0" max="100" value="35"><output id="musicValue">35%</output></label><label class="range-row">Volumen de efectos <input id="fxVolume" type="range" min="0" max="100" value="65"><output id="fxValue">65%</output></label><button class="secondary-btn back-btn" data-back type="button">← VOLVER AL MENÚ</button></section>
+          <section class="credits-panel hidden" id="creditsPanel"><div class="credit-logo">PIXEL<span>ARTE</span> <small>GAMES</small></div><p><b>Mundos en Caos</b><br>Una creación original de PixelARTE Games.<br>Diseño, código, arte procedural y audio generativo.</p><p class="credit-note">Hecho con cariño para exploradores de todas las edades.</p><button class="secondary-btn back-btn" data-back type="button">← VOLVER AL MENÚ</button></section>
+          <section class="intro-panel hidden" id="introPanel"><div class="story-mark">✦</div><p class="story-copy">En el corazón de un bosque antiguo, una estrella cayó y quebró la luz en diez fragmentos. Desde entonces, los guardianes vagan sin rumbo y el portal permanece dormido.<br><br><b>Encuentra las luces. Despierta el portal. Devuelve la armonía.</b></p><button class="primary-btn" id="continueIntro" type="button">EMPRENDER EL VIAJE <span>→</span></button><button class="skip-btn" id="skipIntro" type="button">OMITIR INTRODUCCIÓN →</button></section>
           <div class="hint" id="screenHint">WASD / ESPACIO / F / G <span>·</span> FLECHAS / ENTER / L / K PARA JUGADOR 2</div>
         </div>
       </div>
       <div class="toast" id="toast" aria-live="polite"></div>
-      <div class="mobile-controls" id="mobileControls" aria-label="Controles táctiles">
-        <div class="touch-group movement"><button data-key="left" aria-label="Mover a la izquierda">◀</button><button data-key="right" aria-label="Mover a la derecha">▶</button></div>
-        <div class="touch-group actions"><button data-key="attack" aria-label="Atacar">✦</button><button data-key="ability" aria-label="Habilidad">⚡</button><button data-key="jump" aria-label="Saltar" class="jump">▲</button></div>
-      </div>
+      <div class="mobile-controls" id="mobileControls" aria-label="Controles táctiles"><div class="touch-group movement"><button data-key="left" aria-label="Mover a la izquierda">◀</button><button data-key="right" aria-label="Mover a la derecha">▶</button></div><div class="touch-group actions"><button data-key="attack" aria-label="Atacar">✦</button><button data-key="ability" aria-label="Habilidad">⚡</button><button data-key="jump" aria-label="Saltar" class="jump">▲</button></div></div>
       <div class="bottom-tip"><span>✦</span> REÚNE LAS LUCES Y ALCANZA EL PORTAL <span class="tip-right">EL MUNDO CAMBIA CONTIGO</span></div>
     </section>
-    <footer><span>HECHO PARA EXPLORAR JUNTOS</span><span class="footer-dot">◆</span><span>UNA AVENTURA DE MUNDOS EN CAOS</span></footer>
+    <footer><span>HECHO PARA EXPLORAR JUNTOS</span><span class="footer-dot">◆</span><span>UNA AVENTURA DE PIXELARTE GAMES</span></footer>
   </main>
   <script src="game.js"></script>
 </body>
